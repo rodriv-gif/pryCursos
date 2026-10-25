@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="azul_boton">#115293</color>
     <color name="verde_boton">#138844</color>
+    <color name="gris_fondo_curso">#E8EBF0</color>
+    <color name="gris_boton_cancelar">#E4E4E2</color>
 </resources>
