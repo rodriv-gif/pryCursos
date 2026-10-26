@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var spinnerCarreras: Spinner
     private lateinit var recyclerCurso: RecyclerView
     private lateinit var adapterCurso: CursosAdaptador
-    private lateinit var btnVerRegistro: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
