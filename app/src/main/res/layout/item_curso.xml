@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imgCurso"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -29,7 +29,11 @@
                 android:id="@+id/txtNombreCurso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:layout_weight="1"
+                android:lines="2"
+                android:paddingHorizontal="4dp"
+                android:paddingTop="4dp"
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textColor="@color/black"
@@ -41,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:paddingBottom="4dp"
             android:text="TextView" />
 
 
@@ -53,24 +58,26 @@
         <Button
             android:id="@+id/btnVerDetalle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_weight="1"
             android:layout_marginEnd="2dp"
             android:backgroundTint="@color/azul_boton"
+            android:paddingHorizontal="1dp"
             android:text="VER DETALLE"
             android:textColor="@color/white"
-            android:textSize="10sp" />
+            android:textSize="9sp" />
 
         <Button
             android:id="@+id/btnRegistrarse"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_weight="1"
             android:layout_marginStart="2dp"
             android:backgroundTint="@color/verde_boton"
+            android:paddingHorizontal="1dp"
             android:text="REGISTRARSE"
             android:textColor="@color/white"
-            android:textSize="10sp" />
+            android:textSize="9sp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class dataCarreras(
-    @SerialName("id") val id:Int = 0,
-    @SerialName("carrera") val categoria: String=""
+    @SerialName("carrera_id") val id:Int = 0,
+    @SerialName("carrera") val carrera: String=""
 )
 {
     override fun toString(): String {
-        return categoria
+        return carrera
     }
 }
