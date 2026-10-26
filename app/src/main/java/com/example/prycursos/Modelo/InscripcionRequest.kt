@@ -9,5 +9,5 @@ data class InscripcionRequest(
     //SerialName asegura que el php recibe la variable
     @SerialName("matricula") val matricula: String="",
     @SerialName("correo") val correo: String="",
-    @SerialName("cursoId") val cursoId: Int=0
+    @SerialName("curso_id") val cursoId: Int=0
 )
