@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">pryCursos</string>
     <string name="txtTitulo">CATALOGO DE CURSOS</string>
+    <string name="txtTituloRegistro">REGISTRO AL CURSO</string>
+    <string name="txtEtiquetaMatricula">MATRÍCULA DEL ALUMNO:</string>
+    <string name="txtEtiquetaFecha">FECHA DE REGISTRO:</string>
+    <string name="txtEtiquetaCorreo">CORREO INSTITUCIONAL:</string>
+    <string name="btnConfirmarRegistro">CONFIRMAR INSCRIPCIÓN</string>
+    <string name="btnCancelarRegistro">CANCELAR</string>
 </resources>
