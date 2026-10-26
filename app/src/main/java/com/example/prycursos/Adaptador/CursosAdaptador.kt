@@ -32,7 +32,7 @@ class CursosAdaptador(
         val curso = listaCursos[position]
         holder.tvNombre.text = curso.nombre
         holder.tvSalon.text = curso.salon
-        val baseUrl = "http://192.168.0.66/cursos_api/"
+        val baseUrl = "http://192.168.31.217/cursos_api/"
         val urlImagenCompleta = baseUrl + curso.urlimagenprincipal
         Glide.with(holder.itemView.context)
             .load(urlImagenCompleta)
