@@ -13,7 +13,7 @@ class clsModeloInscripciones {
 
 
     // Dirección de la API
-    val urlApi = "http:ip lap ejempl.php"
+    val urlApi = "http://192.168.0.66/cursos_api.php"
     val cupoMaximo = 50
 
     // Calcular lugares disponibles
