@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var spinnerCarreras: Spinner
     private lateinit var recyclerCurso: RecyclerView
     private lateinit var adapterCurso: CursosAdaptador
+    private lateinit var btnVerRegistro: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
