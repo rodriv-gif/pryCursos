@@ -1,5 +1,6 @@
 package com.example.prycursos.Vista
 
+import android.content.Intent
 import android.graphics.LinearGradient
 import android.os.Bundle
 import android.view.View
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var spinnerCarreras: Spinner
     private lateinit var recyclerCurso: RecyclerView
     private lateinit var adapterCurso: CursosAdaptador
+    private lateinit var btnVerRegistro: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
         spinnerCarreras = findViewById(R.id.spnCategorias)
         recyclerCurso = findViewById(R.id.rvLista)
+        btnVerRegistro = findViewById(R.id.btnVerRegistros)
 
         recyclerCurso.layoutManager = GridLayoutManager(this,2)
         adapterCurso = CursosAdaptador(this, emptyList())
@@ -54,6 +57,10 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+        btnVerRegistro.setOnClickListener {
+            val intent = Intent(this, clsVistainscripciones::class.java)
+            startActivity(intent)
+        }
     }
     fun mostrarCarreras(carreras: List<dataCarreras>) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, carreras)
@@ -65,6 +72,12 @@ class MainActivity : AppCompatActivity() {
     }
     fun seleccionarCurso(producto: dataCursos) {
        // presenter.seleccionarCurso(producto)
+    }
+    fun registrarCurso(curso: dataCursos) {
+        val intent = Intent(this, RegistroActivity::class.java)
+        intent.putExtra("CURSO_ID", curso.id)
+        intent.putExtra("CURSO_NOMBRE", curso.nombre)
+        startActivity(intent)
     }
     fun mostrarError(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()

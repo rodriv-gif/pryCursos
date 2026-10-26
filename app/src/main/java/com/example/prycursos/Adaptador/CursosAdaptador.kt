@@ -3,6 +3,7 @@ package com.example.prycursos.Adaptador
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ class CursosAdaptador(
         val tvNombre: TextView = itemView.findViewById(R.id.txtNombreCurso)
         val tvSalon: TextView = itemView.findViewById(R.id.txtSalonCurso)
         val imgCurso: ImageView = itemView.findViewById(R.id.imgCurso)
+        val btnRegistrarse: Button = itemView.findViewById(R.id.btnRegistrarse)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):CursoViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -45,6 +47,10 @@ class CursosAdaptador(
                 activity.seleccionarCurso(curso)
             }
         })
+
+        holder.btnRegistrarse.setOnClickListener{
+            activity.registrarCurso(curso)
+        }
     }
     override fun getItemCount(): Int {
         return listaCursos.size
