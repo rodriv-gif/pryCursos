@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".Vista.RegistroActivity" />
         <activity android:name=".Vista.clsVistainscripciones"/>
+        <activity android:name=".Vista.EstadoInscripcionesActivity"/>
+
     </application>
 
 </manifest>
