@@ -20,6 +20,10 @@ class clsInscripcionPresentador(private val view: RegistroActivity) {
             view.mostrarError("Por favor, ingresa tu matrícula y correo institucional")
             return
         }
+        if (cursoId <= 0) {
+            view.mostrarError("No se pudo identificar el curso")
+            return
+        }
 
         // Se abre un proceso en segundo plano para no congelar la pantalla
         CoroutineScope(Dispatchers.Main).launch {
