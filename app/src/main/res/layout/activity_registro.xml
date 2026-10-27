@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Vista.RegistroActivity">
-
     <!-- Banner Azul Superior -->
     <View
         android:id="@+id/viewBanner"
@@ -23,7 +22,6 @@
         android:layout_height="48dp"
         android:padding="12dp"
         android:src="@android:drawable/ic_menu_revert"
-        app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/viewBanner"
         app:layout_constraintStart_toStartOf="@+id/viewBanner"
         app:layout_constraintTop_toTopOf="@+id/viewBanner" />
@@ -40,6 +38,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/viewBanner" />
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/viewBanner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
 
     <!-- Título Principal -->
     <TextView
@@ -56,7 +67,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewBanner" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Tarjeta del curso -->
     <androidx.cardview.widget.CardView
@@ -125,10 +136,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:background="@android:drawable/edit_text"
-        android:importantForAutofill="no"
         android:inputType="number"
+        android:imeOptions="actionNext"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
+        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEtiquetaMatricula" />
@@ -158,10 +170,10 @@
         android:layout_marginEnd="24dp"
         android:background="@android:drawable/edit_text"
         android:drawableEnd="@android:drawable/ic_menu_my_calendar"
-        android:importantForAutofill="no"
         android:inputType="date"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
+        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEtiquetaFecha" />
@@ -190,10 +202,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:background="@android:drawable/edit_text"
-        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
+        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEtiquetaCorreo" />
@@ -210,7 +222,6 @@
         android:text="@string/btnConfirmarRegistro"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:cornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
@@ -227,9 +238,11 @@
         android:text="@string/btnCancelarRegistro"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:cornerRadius="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnConfirmarRegistro" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
