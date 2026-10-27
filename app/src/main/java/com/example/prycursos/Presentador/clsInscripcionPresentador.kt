@@ -13,7 +13,7 @@ class clsInscripcionPresentador(private val view: RegistroActivity) {
     // Se crea el modelo que se comunica con la API
     private val modelo = clsInscripcionModelo()
 
-   /* fun realizarRegistro(matricula: String, correo: String, cursoId: Int) {
+    fun realizarRegistro(matricula: String, correo: String, cursoId: Int) {
 
         // Se revisa que los campos no estén vacíos
         if (matricula.isEmpty() || correo.isEmpty()) {
@@ -44,5 +44,5 @@ class clsInscripcionPresentador(private val view: RegistroActivity) {
                 view.mostrarError("Error de conexión: ${e.localizedMessage ?: "Error desconocido"}")
             }
         }
-    }*/
+    }
 }
