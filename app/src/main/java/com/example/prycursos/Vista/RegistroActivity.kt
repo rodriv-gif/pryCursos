@@ -73,7 +73,7 @@ class RegistroActivity : AppCompatActivity() {
     fun ejecutarRegistro(v: View) {
         val matricula = txtMatricula.text.toString().trim()
         val correo = txtCorreo.text.toString().trim()
-       // presenter.realizarRegistro(matricula, correo, idCurso)
+       presenter.realizarRegistro(matricula, correo, idCurso)
     }
     // Se muestra el mensaje de éxito y se regresa al catálogo
     fun registroExitoso(mensaje: String) {
