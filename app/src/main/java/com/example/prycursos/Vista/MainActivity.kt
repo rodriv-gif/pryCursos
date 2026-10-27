@@ -1,7 +1,6 @@
 package com.example.prycursos.Vista
 
 import android.content.Intent
-import android.graphics.LinearGradient
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -14,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prycursos.Adaptador.CursosAdaptador
 import com.example.prycursos.Modelo.dataCarreras
@@ -58,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         btnVerRegistro.setOnClickListener {
-            val intent = Intent(this, clsVistainscripciones::class.java)
+            val intent = Intent(this, EstadoInscripcionesActivity::class.java)
             startActivity(intent)
         }
     }
