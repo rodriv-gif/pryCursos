@@ -52,7 +52,7 @@ class EstadoInscripcionesAdaptador(
 
         val vista = LayoutInflater.from(parent.context)
             .inflate(
-                R.layout.item_curso,
+                R.layout.item_inscripciones,
                 parent,
                 false
             )

@@ -85,6 +85,7 @@
                 android:id="@+id/spnCategorias"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
+                android:popupBackground="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
                 app:layout_constraintStart_toStartOf="@+id/txtTitulo"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
