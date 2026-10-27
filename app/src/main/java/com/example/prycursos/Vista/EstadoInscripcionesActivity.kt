@@ -17,84 +17,77 @@ import com.example.prycursos.R
 import com.example.prycursos.Adaptador.EstadoInscripcionesAdaptador
 import com.example.prycursos.Modelo.dataEstadoInscripciones
 import com.example.prycursos.Presentador.clsEstadoInscripcionesPresentador
+import android.view.ViewGroup
+import com.example.prycursos.Modelo.RetrofitCliente
 
 class EstadoInscripcionesActivity : AppCompatActivity() {
+
 
     private lateinit var presentador: clsEstadoInscripcionesPresentador
     private lateinit var adaptador: EstadoInscripcionesAdaptador
     private lateinit var spCarrera: Spinner
     private lateinit var txtTotalInscritos: TextView
     private lateinit var rvCursos: RecyclerView
-    private lateinit var txtMensaje: TextView
-    private lateinit var btnReintentar: Button
     private lateinit var btnVolverCatalogo: Button
-
     private var idsCarreras = listOf(0)
     private var carreraSeleccionada = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_inscripciones)
 
-        // Ajustar el contenido a las barras del teléfono
-        ViewCompat.setOnApplyWindowInsetsListener(
-            findViewById(R.id.main)
-        ) { vista, insets ->
-            val barras = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-            )
-            vista.setPadding(
-                barras.left,
-                barras.top,
-                barras.right,
-                barras.bottom
-            )
-            insets
+        val contenedor = findViewById<ViewGroup>(android.R.id.content)
+        val pantalla = contenedor.getChildAt(0)
+
+        if (pantalla != null) {
+
+            val izquierda = pantalla.paddingLeft
+            val arriba = pantalla.paddingTop
+            val derecha = pantalla.paddingRight
+            val abajo = pantalla.paddingBottom
+
+            ViewCompat.setOnApplyWindowInsetsListener(
+                pantalla
+            ) { vista, insets ->
+                val barras = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                )
+                vista.setPadding(
+                    izquierda + barras.left,
+                    arriba + barras.top,
+                    derecha + barras.right,
+                    abajo + barras.bottom
+                )
+                insets
+            }
+            ViewCompat.requestApplyInsets(pantalla)
         }
-        // Componentes del XML
+
         spCarrera = findViewById(R.id.spCarrera)
         txtTotalInscritos = findViewById(R.id.txtTotalInscritos)
         rvCursos = findViewById(R.id.rvCursos)
-        btnReintentar = findViewById(R.id.btnReintentar)
         btnVolverCatalogo = findViewById(R.id.btnVolverCatalogo)
-
-        // Lista de cursos
         rvCursos.layoutManager = LinearLayoutManager(this)
-
-        // Utilizar la misma URL base configurada por el equipo
-        adaptador = EstadoInscripcionesAdaptador(
-            obtenerUrlBase()
-        )
+        adaptador = EstadoInscripcionesAdaptador(RetrofitCliente.BASE_URL)
 
         rvCursos.adapter = adaptador
 
-        // Presentador
         presentador = clsEstadoInscripcionesPresentador(this)
-
-        // Mostrar opción inicial
-        mostrarCarreras(emptyList(), emptyList())
-
-        // Consultar todos los cursos
+        configurarSpinner()
+        configurarBotones()
         presentador.consultarRegistros(0)
+    }
+    private fun configurarSpinner() {
 
-        // Regresar
-        btnVolverCatalogo.setOnClickListener {
-            finish()
-        }
-
-        findViewById<TextView>(R.id.txtRegresar).setOnClickListener {
-            finish()
-        }
-
-        // Reintentar
-        btnReintentar.setOnClickListener {
-            presentador.consultarRegistros(carreraSeleccionada)
-        }
-
-        // Filtro por carrera
+        mostrarCarreras(
+            emptyList(),
+            emptyList()
+        )
         spCarrera.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
+
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
                     view: View?,
@@ -102,7 +95,8 @@ class EstadoInscripcionesActivity : AppCompatActivity() {
                     id: Long
                 ) {
 
-                    val nuevoId = idsCarreras.getOrNull(position) ?: 0
+                    val nuevoId =
+                        idsCarreras.getOrNull(position) ?: 0
 
                     if (nuevoId != carreraSeleccionada) {
 
@@ -111,20 +105,11 @@ class EstadoInscripcionesActivity : AppCompatActivity() {
                         presentador.consultarRegistros(nuevoId)
                     }
                 }
-
-                override fun onNothingSelected(
-                    parent: AdapterView<*>?
-                ) {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
                 }
             }
     }
 
-    // URL base compartida con Retrofit
-    private fun obtenerUrlBase(): String {
-        return com.example.prycursos.Modelo.RetrofitCliente.BASE_URL
-    }
-
-    // Cargar las carreras en el Spinner
     fun mostrarCarreras(
         nombresCarreras: List<String>,
         ids: List<Int>
@@ -134,7 +119,10 @@ class EstadoInscripcionesActivity : AppCompatActivity() {
             return
         }
 
-        val nombres = mutableListOf("Todas las carreras")
+        val nombres = mutableListOf(
+            "Todas las carreras"
+        )
+
         nombres.addAll(nombresCarreras)
 
         idsCarreras = listOf(0) + ids
@@ -150,42 +138,50 @@ class EstadoInscripcionesActivity : AppCompatActivity() {
         )
 
         spCarrera.adapter = adaptadorCarreras
+
+        val posicion =
+            idsCarreras.indexOf(carreraSeleccionada)
+
+        spCarrera.setSelection(
+            if (posicion >= 0) posicion else 0
+        )
     }
+    private fun configurarBotones() {
+        btnVolverCatalogo.setOnClickListener {
+            finish()
+        }
 
-    /* // Mientras se realiza la consulta
-     fun mostrarCargando() {
 
-         txtMensaje.text = "Cargando cursos..."
-         txtMensaje.visibility = View.VISIBLE
-         btnReintentar.visibility = View.GONE
-         rvCursos.visibility = View.GONE
-     }*/
+        val txtRegresar =
+            findViewById<TextView>(R.id.txtRegresar)
 
-    // Mostrar resultados
-
+        txtRegresar?.setOnClickListener {
+            finish()
+        }
+    }
     fun mostrarCursos(
         cursos: List<dataEstadoInscripciones>,
         total: Int
     ) {
-        // Actualizar las tarjetas
         adaptador.actualizarCursos(cursos)
-
-        // Actualizar el total de inscritos
         txtTotalInscritos.text = "Total: $total"
-
-        // Mantener visible la lista de cursos
         rvCursos.visibility = View.VISIBLE
+
+
+        if (cursos.isEmpty()) {
+
+            Toast.makeText(
+                this,
+                "No hay cursos registrados",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
-
-
-    // Mostrar error de conexión
     fun mostrarError(mensaje: String) {
-
-        rvCursos.visibility = View.GONE
-
-        txtMensaje.text = mensaje
-        txtMensaje.visibility = View.VISIBLE
-
-        btnReintentar.visibility = View.VISIBLE
+        Toast.makeText(
+            this,
+            mensaje,
+            Toast.LENGTH_LONG
+        ).show()
     }
 }
