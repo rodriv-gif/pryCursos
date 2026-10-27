@@ -22,7 +22,6 @@ import com.example.prycursos.Modelo.RetrofitCliente
 
 class EstadoInscripcionesActivity : AppCompatActivity() {
 
-
     private lateinit var presentador: clsEstadoInscripcionesPresentador
     private lateinit var adaptador: EstadoInscripcionesAdaptador
     private lateinit var spCarrera: Spinner
@@ -31,7 +30,6 @@ class EstadoInscripcionesActivity : AppCompatActivity() {
     private lateinit var btnVolverCatalogo: Button
     private var idsCarreras = listOf(0)
     private var carreraSeleccionada = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +49,7 @@ class EstadoInscripcionesActivity : AppCompatActivity() {
             ViewCompat.setOnApplyWindowInsetsListener(
                 pantalla
             ) { vista, insets ->
-                val barras = insets.getInsets(
-                    WindowInsetsCompat.Type.systemBars()
+                val barras = insets.getInsets(WindowInsetsCompat.Type.systemBars()
                 )
                 vista.setPadding(
                     izquierda + barras.left,
@@ -77,31 +74,22 @@ class EstadoInscripcionesActivity : AppCompatActivity() {
         presentador = clsEstadoInscripcionesPresentador(this)
         configurarSpinner()
         configurarBotones()
+        presentador.cargarCarreras()
         presentador.consultarRegistros(0)
     }
     private fun configurarSpinner() {
 
-        mostrarCarreras(
-            emptyList(),
-            emptyList()
-        )
+        mostrarCarreras(emptyList(), emptyList())
+
         spCarrera.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                    val nuevoId =
-                        idsCarreras.getOrNull(position) ?: 0
+                    val nuevoId = idsCarreras.getOrNull(position) ?: 0
 
                     if (nuevoId != carreraSeleccionada) {
-
                         carreraSeleccionada = nuevoId
-
                         presentador.consultarRegistros(nuevoId)
                     }
                 }
@@ -109,79 +97,48 @@ class EstadoInscripcionesActivity : AppCompatActivity() {
                 }
             }
     }
-
     fun mostrarCarreras(
         nombresCarreras: List<String>,
         ids: List<Int>
     ) {
-
         if (nombresCarreras.size != ids.size) {
             return
         }
-
-        val nombres = mutableListOf(
-            "Todas las carreras"
-        )
+        val nombres = mutableListOf("Todas las carreras")
 
         nombres.addAll(nombresCarreras)
-
         idsCarreras = listOf(0) + ids
 
-        val adaptadorCarreras = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            nombres
-        )
+        val adaptadorCarreras = ArrayAdapter(this, android.R.layout.simple_spinner_item, nombres)
 
-        adaptadorCarreras.setDropDownViewResource(
-            android.R.layout.simple_spinner_dropdown_item
-        )
+        adaptadorCarreras.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spCarrera.adapter = adaptadorCarreras
 
-        val posicion =
-            idsCarreras.indexOf(carreraSeleccionada)
+        val posicion = idsCarreras.indexOf(carreraSeleccionada)
 
-        spCarrera.setSelection(
-            if (posicion >= 0) posicion else 0
-        )
+        spCarrera.setSelection(if (posicion >= 0) posicion else 0)
     }
     private fun configurarBotones() {
         btnVolverCatalogo.setOnClickListener {
             finish()
         }
-
-
-        val txtRegresar =
-            findViewById<TextView>(R.id.txtRegresar)
+        val txtRegresar = findViewById<TextView>(R.id.txtRegresar)
 
         txtRegresar?.setOnClickListener {
             finish()
         }
     }
-    fun mostrarCursos(
-        cursos: List<dataEstadoInscripciones>,
-        total: Int
-    ) {
+    fun mostrarCursos(cursos: List<dataEstadoInscripciones>, total: Int) {
         adaptador.actualizarCursos(cursos)
         txtTotalInscritos.text = "Total: $total"
         rvCursos.visibility = View.VISIBLE
 
-
         if (cursos.isEmpty()) {
-
-            Toast.makeText(
-                this,
-                "No hay cursos registrados",
-                Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(this, "No hay cursos registrados", Toast.LENGTH_LONG).show()
         }
     }
     fun mostrarError(mensaje: String) {
-        Toast.makeText(
-            this,
-            mensaje,
-            Toast.LENGTH_LONG
-        ).show()
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
     }
 }
