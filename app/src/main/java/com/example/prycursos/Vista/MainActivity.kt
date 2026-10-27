@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, RegistroActivity::class.java)
         intent.putExtra("CURSO_ID", curso.id)
         intent.putExtra("CURSO_NOMBRE", curso.nombre)
+        intent.putExtra("URL_IMAGEN", curso.urlimagenprincipal)
         startActivity(intent)
     }
     fun mostrarError(mensaje: String) {
