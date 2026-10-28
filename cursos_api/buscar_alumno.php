@@ -3,9 +3,12 @@
 header("Content-Type: application/json; charset=UTF-8");
 require_once "config/conexion.php";
 
+// Decodificar el cuerpo JSON enviado por Retrofit desde Android
+$jsonInput = file_get_contents("php://input");
+$data = json_decode($jsonInput, true);
+ 
 //Se recibe la matricula que manda Android
-$matricula = isset($_GET['matricula']) ? trim($_GET['matricula']) : '';
-
+$matricula = isset($data['matricula']) ? trim($data['matricula']) : '';
 //Se valida que la matricula no llegue vacia
 if (empty($matricula)) {
     header("HTTP/1.1 400 Bad Request");
