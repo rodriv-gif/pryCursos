@@ -1,6 +1,7 @@
 package com.example.prycursos.Presentador
 
 import com.example.prycursos.Modelo.clsCursosModelo
+import com.example.prycursos.Modelo.dataImagenesCurso
 //import com.example.prycursos.Modelo.dataImagenesCurso
 import com.example.prycursos.Vista.DetalleCursoActivity
 import kotlinx.coroutines.CoroutineScope
@@ -13,8 +14,8 @@ class clsDetalleCursoPresentador(private val vista: DetalleCursoActivity) {
     fun cargarDetalle(idCurso: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                //val listaImagenes: List<dataImagenesCurso> = modelo.obtenerDetalleCurso(idCurso)
-                //vista.mostrarImagenes(listaImagenes)
+                val listaImagenes: List<dataImagenesCurso> = modelo.obtenerDetalleCurso(idCurso)
+                vista.mostrarImagenes(listaImagenes)
             } catch (e: Exception) {
                 vista.mostrarError("Error al cargar detalle: " + e.localizedMessage)
             }

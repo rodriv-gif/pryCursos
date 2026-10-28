@@ -68,8 +68,21 @@ class MainActivity : AppCompatActivity() {
     fun mostrarCursos(productos: List<dataCursos>) {
         adapterCurso.actualizarLista(productos)
     }
-    fun seleccionarCurso(producto: dataCursos) {
-       // presenter.seleccionarCurso(producto)
+    fun seleccionarCurso(curso: dataCursos) {
+
+        val intent = Intent(this, DetalleCursoActivity::class.java)
+        intent.putExtra("ID_CURSO", curso.id)
+        intent.putExtra("CODIGO_CURSO", curso.codigo)
+        intent.putExtra("NOMBRE_CURSO", curso.nombre)
+        intent.putExtra("DESCRIPCION", curso.descripcion)
+        intent.putExtra("EDIFICIO", curso.edificio)
+        intent.putExtra("SALON", curso.salon)
+        intent.putExtra("TOTAL_HORAS", curso.totalHoras)
+        intent.putExtra("DIAS_ATENCION", curso.diasAtencion)
+        intent.putExtra("HORAS_ATENCION", curso.horario)
+        intent.putExtra("URL_IMAGEN", curso.urlimagenprincipal)
+        startActivity(intent)
+
     }
     fun registrarCurso(curso: dataCursos) {
         val intent = Intent(this, RegistroActivity::class.java)

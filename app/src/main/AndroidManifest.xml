@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Vista.DetalleCursoActivity" />
         <activity android:name=".Vista.RegistroActivity" />
         <activity android:name=".Vista.EstadoInscripcionesActivity"/>
 
