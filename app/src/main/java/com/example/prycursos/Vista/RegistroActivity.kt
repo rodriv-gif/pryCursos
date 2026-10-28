@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.example.prycursos.Modelo.RetrofitCliente
 import com.example.prycursos.Presentador.clsInscripcionPresentador
 import com.example.prycursos.R
 import java.text.SimpleDateFormat
@@ -65,7 +66,7 @@ class RegistroActivity : AppCompatActivity() {
 
         // Se recibe la ruta de la imagen y se arma la dirección completa
         val imagenCurso = intent.getStringExtra("URL_IMAGEN") ?: ""
-        val baseUrl = "http://192.168.31.217/cursos_api/"
+        val baseUrl = RetrofitCliente.BASE_URL
         val urlImagenCompleta = baseUrl + imagenCurso
         Glide.with(this)
             .load(urlImagenCompleta)

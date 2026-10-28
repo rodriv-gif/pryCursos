@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         recyclerCurso = findViewById(R.id.rvLista)
         btnVerRegistro = findViewById(R.id.btnVerRegistros)
 
-        recyclerCurso.layoutManager = GridLayoutManager(this,2)
+        recyclerCurso.layoutManager = GridLayoutManager(this, 2)
         adapterCurso = CursosAdaptador(this, emptyList())
         recyclerCurso.adapter = adapterCurso
         presenter = clsCategoriasPresentador(this)
@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         configurarListeners()
         presenter.iniciar()
     }
+
     private fun configurarListeners() {
         spinnerCarreras.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -60,17 +61,31 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     fun mostrarCarreras(carreras: List<dataCarreras>) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, carreras)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCarreras.adapter = adapter
     }
+
     fun mostrarCursos(productos: List<dataCursos>) {
         adapterCurso.actualizarLista(productos)
     }
-    fun seleccionarCurso(producto: dataCursos) {
-       // presenter.seleccionarCurso(producto)
+
+    fun seleccionarCurso(curso: dataCursos) {
+        val intent = Intent(this, DetalleCursoActivity::class.java)
+        intent.putExtra("ID_CURSO", curso.id)
+        intent.putExtra("CODIGO_CURSO", curso.codigo)
+        intent.putExtra("NOMBRE_CURSO", curso.nombre)
+        intent.putExtra("DESCRIPCION", curso.descripcion)
+        intent.putExtra("EDIFICIO", curso.edificio)
+        intent.putExtra("SALON", curso.salon)
+        intent.putExtra("TOTAL_HORAS", curso.totalHoras)
+        intent.putExtra("DIAS_ATENCION", curso.diasAtencion)
+        intent.putExtra("HORAS_ATENCION", curso.horario)
+        startActivity(intent)
     }
+
     fun registrarCurso(curso: dataCursos) {
         val intent = Intent(this, RegistroActivity::class.java)
         intent.putExtra("CURSO_ID", curso.id)
@@ -78,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("URL_IMAGEN", curso.urlimagenprincipal)
         startActivity(intent)
     }
+
     fun mostrarError(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
     }

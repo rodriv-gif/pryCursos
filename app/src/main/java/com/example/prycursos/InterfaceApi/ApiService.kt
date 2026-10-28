@@ -6,6 +6,7 @@ import com.example.prycursos.Modelo.InscripcionResponse
 import com.example.prycursos.Modelo.RespuestaEstadoInscripciones
 import com.example.prycursos.Modelo.dataCarreras
 import com.example.prycursos.Modelo.dataCursos
+import com.example.prycursos.Modelo.dataImagenesCurso
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.POST
@@ -18,6 +19,8 @@ interface ApiService {
     //Aqui agregamos los edpoint para el resicler y para la vista detalle
     @GET("obtener_cursos.php")
     suspend fun obtenerCursos(@Query("carrera_id") carreraId: Int): List<dataCursos>
+    @GET("obtener_detalle_curso.php")
+    suspend fun obtenerDetalleCurso(@Query("curso_id") cursoId: Int): List<dataImagenesCurso>
     @POST("registrar_inscripcion.php")
     suspend fun registrarInscripcion(@Body request: InscripcionRequest): InscripcionResponse
     @GET("consulta_registros.php")

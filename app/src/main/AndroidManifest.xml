@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".Vista.RegistroActivity" />
         <activity android:name=".Vista.EstadoInscripcionesActivity"/>
+        <activity android:name=".Vista.DetalleCursoActivity"/>
 
     </application>
 

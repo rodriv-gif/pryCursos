@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Vista.DetalleCursoActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpGaleria"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+            </androidx.viewpager2.widget.ViewPager2>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <TextView
+                    android:id="@+id/txtTituloMateria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtdetalleCodigo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="TextView"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtDescripction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="@string/etiquetaDescripcion"
+                    android:textAllCaps="true"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtdetalleDescripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/txtEspacio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="@string/etiquetaEspacio"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtdetalleEspacio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/txtHorarTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="@string/etiquetaHoras"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtdetalleHoras"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/txtDiasAtencion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="@string/etiquetaAtencion"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtdetalleDiasAtencion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/txtdetalleHorasAtencion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="TextView" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

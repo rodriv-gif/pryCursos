@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.prycursos.Modelo.RetrofitCliente
 import com.example.prycursos.Modelo.dataCursos
 import com.example.prycursos.Vista.MainActivity
 import com.example.prycursos.R
@@ -21,40 +22,42 @@ class CursosAdaptador(
         val tvNombre: TextView = itemView.findViewById(R.id.txtNombreCurso)
         val tvSalon: TextView = itemView.findViewById(R.id.txtSalonCurso)
         val imgCurso: ImageView = itemView.findViewById(R.id.imgCurso)
+        val btnVerDetalle: Button? = itemView.findViewById(R.id.btnVerDetalle)
         val btnRegistrarse: Button = itemView.findViewById(R.id.btnRegistrarse)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):CursoViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CursoViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_curso, parent, false)
         return CursoViewHolder(view)
     }
+
     override fun onBindViewHolder(holder: CursoViewHolder, position: Int) {
         val curso = listaCursos[position]
         holder.tvNombre.text = curso.nombre
         holder.tvSalon.text = curso.salon
-        val baseUrl = "http://10.191.45.71/cursos_api/"
+        val baseUrl = RetrofitCliente.BASE_URL
         val urlImagenCompleta = baseUrl + curso.urlimagenprincipal
         Glide.with(holder.itemView.context)
             .load(urlImagenCompleta)
-            .placeholder(android.R.drawable.ic_menu_gallery) // Imagen por defecto mientras carga
-            .error(android.R.drawable.stat_notify_error) // Imagen si falla la carga
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .error(android.R.drawable.stat_notify_error)
             .into(holder.imgCurso)
 
-        holder.itemView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                //Esta funcion se ejecuta en la vista MainActivity
-                //y se manda al presentador para que se muestre el curso seleccionado
-                activity.seleccionarCurso(curso)
-            }
-        })
+        holder.itemView.setOnClickListener {
+            activity.seleccionarCurso(curso)
+        }
 
-        holder.btnRegistrarse.setOnClickListener{
+        holder.btnVerDetalle?.setOnClickListener {
+            activity.seleccionarCurso(curso)
+        }
+
+        holder.btnRegistrarse.setOnClickListener {
             activity.registrarCurso(curso)
         }
     }
-    override fun getItemCount(): Int {    
-        return listaCursos.size
-    }
+
+    override fun getItemCount(): Int = listaCursos.size
 
     fun actualizarLista(nuevaLista: List<dataCursos>) {
         listaCursos = nuevaLista
