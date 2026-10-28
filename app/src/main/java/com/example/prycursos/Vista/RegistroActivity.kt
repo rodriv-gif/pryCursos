@@ -65,7 +65,7 @@ class RegistroActivity : AppCompatActivity() {
 
         // Se recibe la ruta de la imagen y se arma la dirección completa
         val imagenCurso = intent.getStringExtra("URL_IMAGEN") ?: ""
-        val baseUrl = "http://192.168.31.217/cursos_api/"
+        val baseUrl = "http://192.168.0.66/cursos_api/"
         val urlImagenCompleta = baseUrl + imagenCurso
         Glide.with(this)
             .load(urlImagenCompleta)

@@ -23,7 +23,7 @@ class GaleriaAdaptador(private var listaImagenes: List<dataImagenesCurso>) :
 
     override fun onBindViewHolder(holder: GaleriaViewHolder, position: Int) {
         val imagen = listaImagenes[position]
-        val baseUrl = "http://10.191.45.71/cursos_api/"
+        val baseUrl = "http://192.168.0.66/cursos_api/"
         val urlCompleto = baseUrl + imagen.urlImagen
 
         Glide.with(holder.itemView.context)
