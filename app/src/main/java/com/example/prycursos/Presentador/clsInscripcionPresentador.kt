@@ -13,6 +13,36 @@ class clsInscripcionPresentador(private val view: RegistroActivity) {
     // Se crea el modelo que se comunica con la API
     private val modelo = clsInscripcionModelo()
 
+    fun buscarCorreo(matricula: String) {
+
+        // Se revisa que la matrícula no esté vacía
+        if (matricula.isEmpty()) {
+            view.mostrarError("Por favor, ingresa tu matrícula")
+            return
+        }
+
+        // Se abre un proceso en segundo plano para no congelar la pantalla
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                // Se busca el correo en el servidor y se espera la respuesta
+                val respuesta = withContext(Dispatchers.IO) {
+                    modelo.buscarCorreo(matricula)
+                }
+
+                // Se muestra el correo o el error según la respuesta
+                if (respuesta.exito) {
+                    view.mostrarCorreo(respuesta.correo)
+                } else {
+                    view.mostrarError(respuesta.mensaje)
+                }
+
+            } catch (e: Exception) {
+                // Si falla la conexión o el servidor, se muestra el error
+                view.mostrarError("Error de conexión: ${e.localizedMessage ?: "Error desconocido"}")
+            }
+        }
+    }
+
     fun realizarRegistro(matricula: String, correo: String, cursoId: Int) {
 
         // Se revisa que los campos no estén vacíos

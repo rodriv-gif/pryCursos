@@ -52,7 +52,7 @@ class CursosAdaptador(
             activity.registrarCurso(curso)
         }
     }
-    override fun getItemCount(): Int {
+    override fun getItemCount(): Int {    
         return listaCursos.size
     }
 

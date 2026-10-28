@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="#F4F6F8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Vista.RegistroActivity">
@@ -137,7 +138,7 @@
         android:layout_marginEnd="24dp"
         android:background="@android:drawable/edit_text"
         android:inputType="number"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         tools:ignore="SpeakableTextPresentCheck"

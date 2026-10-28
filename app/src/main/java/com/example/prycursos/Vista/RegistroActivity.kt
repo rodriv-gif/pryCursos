@@ -2,7 +2,9 @@ package com.example.prycursos.Vista
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -12,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.example.prycursos.Presentador.clsInscripcionPresentador
 import com.example.prycursos.R
 import java.text.SimpleDateFormat
@@ -60,14 +63,42 @@ class RegistroActivity : AppCompatActivity() {
         txtNombreCurso.text=nombreCurso
         txtSubtitulo.text="INSCRIPCIÓN:\n"+nombreCurso
 
+        // Se recibe la ruta de la imagen y se arma la dirección completa
+        val imagenCurso = intent.getStringExtra("URL_IMAGEN") ?: ""
+        val baseUrl = "http://192.168.31.217/cursos_api/"
+        val urlImagenCompleta = baseUrl + imagenCurso
+        Glide.with(this)
+            .load(urlImagenCompleta)
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .error(android.R.drawable.stat_notify_error)
+            .into(imgCurso)
+
         //Es para mostrar la fecha en que se registra y no se puede editar
         txtFecha.setText(SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date()))
         txtFecha.isEnabled=false
 
+        // El correo se llena solo al buscar la matrícula, el usuario no lo escribe
+        txtCorreo.isEnabled = false
+
         // Se asignan las acciones de los botones
+        txtMatricula.setOnEditorActionListener(this::buscarCorreo)
         btnConfirmarRegistro.setOnClickListener(this::ejecutarRegistro)
         btnCancelarRegistro.setOnClickListener { finish() }
         imgVolver.setOnClickListener { finish() }
+    }
+
+    // Se busca el correo cuando se presiona listo en el teclado
+    fun buscarCorreo(v: TextView?, i: Int, event: KeyEvent?): Boolean {
+        if (i == EditorInfo.IME_ACTION_DONE) {
+            txtCorreo.setText("")
+            presenter.buscarCorreo(txtMatricula.text.toString().trim())
+        }
+        return false
+    }
+
+    // Se muestra el correo que encontró el servidor
+    fun mostrarCorreo(correo: String) {
+        txtCorreo.setText(correo)
     }
     // Se leen los datos y se mandan al presentador
     fun ejecutarRegistro(v: View) {
