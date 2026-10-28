@@ -1,6 +1,7 @@
 package com.example.prycursos.InterfaceApi
 
-import com.example.prycursos.Modelo.CorreoResponse
+import com.example.prycursos.Modelo.BuscarRequest
+import com.example.prycursos.Modelo.BuscarResponse
 import com.example.prycursos.Modelo.InscripcionRequest
 import com.example.prycursos.Modelo.InscripcionResponse
 import com.example.prycursos.Modelo.RespuestaEstadoInscripciones
@@ -25,7 +26,7 @@ interface ApiService {
     suspend fun registrarInscripcion(@Body request: InscripcionRequest): InscripcionResponse
     @GET("consulta_registros.php")
     suspend fun obtenerEstadoInscripciones(@Query("carrera_id") carreraId: Int): RespuestaEstadoInscripciones
-    @GET("buscar_alumno.php")
-    suspend fun obtenerCorreo(@Query("matricula") matricula: String): CorreoResponse
+    @POST("buscar_alumno.php")
+    suspend fun buscarAlumno(@Body request: BuscarRequest): BuscarResponse
 
 }
