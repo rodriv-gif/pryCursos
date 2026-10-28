@@ -7,4 +7,8 @@
     <string name="txtEtiquetaCorreo">CORREO INSTITUCIONAL:</string>
     <string name="btnConfirmarRegistro">CONFIRMAR INSCRIPCIÓN</string>
     <string name="btnCancelarRegistro">CANCELAR</string>
+    <string name="etiquetaDescripcion">Descripción</string>
+    <string name="etiquetaEspacio">Espacio</string>
+    <string name="etiquetaHoras">Horas totales</string>
+    <string name="etiquetaAtencion">Días de atención</string>
 </resources>
