@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
-//import com.example.prycursos.Adaptador.GaleriaAdaptador
-//import com.example.prycursos.Modelo.dataImagenesCurso
+import com.example.prycursos.Adaptador.GaleriaAdaptador
+import com.example.prycursos.Modelo.dataImagenesCurso
 import com.example.prycursos.Presentador.clsDetalleCursoPresentador
 import com.example.prycursos.R
 
@@ -25,7 +25,7 @@ class DetalleCursoActivity : AppCompatActivity() {
     private lateinit var txtDiasAtencion: TextView
     private lateinit var txtHorasAtencion: TextView
     private lateinit var btnBack: Button
-    //private lateinit var adapterGaleria: GaleriaAdaptador
+    private lateinit var adapterGaleria: GaleriaAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +36,7 @@ class DetalleCursoActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         vpGaleria = findViewById(R.id.vpGaleria)
         txtCodidoCurso = findViewById(R.id.txtdetalleCodigo)
         txtNombreCuros = findViewById(R.id.txtTituloMateria)
@@ -45,8 +46,9 @@ class DetalleCursoActivity : AppCompatActivity() {
         txtDiasAtencion = findViewById(R.id.txtdetalleDiasAtencion)
         txtHorasAtencion = findViewById(R.id.txtdetalleHorasAtencion)
         btnBack = findViewById(R.id.btnBack)
-        //adapterGaleria = GaleriaAdaptador(emptyList())
-        //vpGaleria.adapter = adapterGaleria
+
+        adapterGaleria = GaleriaAdaptador(emptyList())
+        vpGaleria.adapter = adapterGaleria
 
         btnBack.setOnClickListener {
             finish()
@@ -76,9 +78,9 @@ class DetalleCursoActivity : AppCompatActivity() {
         }
     }
 
-    //fun mostrarImagenes(imagenes: List<dataImagenesCurso>) {
-        //adapterGaleria.actualizarLista(imagenes)
-    //}
+    fun mostrarImagenes(imagenes: List<dataImagenesCurso>) {
+        adapterGaleria.actualizarLista(imagenes)
+    }
 
     fun mostrarError(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
